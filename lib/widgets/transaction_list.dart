@@ -32,7 +32,7 @@ class TransactionList extends StatelessWidget {
                       // string interpolation is a better in dart for concatting string better of using +
                       //+++ with string interpolation we don't need to use toString() to convert any variable to string before concatting
                       // $variable or ${nestedvariable}
-                      '\$${transactions[index].amount}',
+                      '\$${transactions[index].amount.toStringAsFixed(2)}',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,

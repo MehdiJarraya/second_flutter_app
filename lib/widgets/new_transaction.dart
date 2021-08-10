@@ -11,6 +11,18 @@ class NewTransaction extends StatelessWidget {
 
   NewTransaction(this.addTx);
 
+  void submitData() {
+    final entredTitle = titleController.text;
+    final entredAmount = double.parse(amountController.text);
+    if (entredTitle.isEmpty || entredAmount <= 0) {
+      return;
+    }
+    addTx(
+      entredTitle,
+      entredAmount,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -25,6 +37,7 @@ class NewTransaction extends StatelessWidget {
                 labelText: 'Title',
               ),
               controller: titleController,
+              onSubmitted: (_) => submitData(),
               // onChanged: (value) {
               //   titleInput = value;
               // },
@@ -34,15 +47,15 @@ class NewTransaction extends StatelessWidget {
                 labelText: 'Amount',
               ),
               controller: amountController,
+              keyboardType: TextInputType.number,
+              // (_) to indicute that we will not use the argument otherwise we have to define submitData with a string argument
+              onSubmitted: (_) => submitData(),
               // onChanged: (value) => amountInput = value,
             ),
             FlatButton(
               onPressed: () {
                 print(titleController.text);
-                addTx(
-                  titleController.text,
-                  double.parse(amountController.text),
-                );
+                submitData();
               },
               child: Text('Add transaction'),
               textColor: Colors.purple,
