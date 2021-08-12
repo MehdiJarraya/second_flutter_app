@@ -15,6 +15,26 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         // accentColor looke for docs to see which color much with purple
         accentColor: Colors.amber,
+        // match the name with yaml file
+        fontFamily: 'Quicksand',
+        // define global textTheme
+        textTheme: ThemeData.light().textTheme.copyWith(
+              title: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+        // overrride all appBar  title with those style bellow
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                title: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+        ),
       ),
       home: MyHomePage(),
     );
@@ -70,7 +90,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text(
+          'Personal Expences',
+          // unstead we define app bar style here we override in theme above
+          // style: TextStyle(fontFamily: 'OpenSans'),
+        ),
         actions: <Widget>[
           IconButton(
             onPressed: () => _startAddNewTransactio(context),
