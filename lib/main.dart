@@ -13,9 +13,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter App',
       theme: ThemeData(
         // primarySwatch provide the variation of colors
+
         primarySwatch: Colors.purple,
         // accentColor looke for docs to see which color much with purple
         accentColor: Colors.amber,
+        errorColor: Colors.red,
         // match the name with yaml file
         fontFamily: 'Quicksand',
         // define global textTheme
@@ -60,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
       date: DateTime.now(),
     ),
     Transaction(
-      id: 't1',
+      id: 't2',
       title: "Restaurant",
       amount: 100.50,
       date: DateTime.now(),
@@ -103,6 +105,14 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((element) {
+        return element.id == id;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 5,
               ),
             ),
-            TransactionList(_userTransactions),
+            TransactionList(_userTransactions, _deleteTransaction),
           ],
         ),
       ),
