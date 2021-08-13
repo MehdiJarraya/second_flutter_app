@@ -20,7 +20,7 @@ class TransactionList extends StatelessWidget {
           ? Column(
               children: <Widget>[
                 Text("No transaction added Yet!"),
-                // SizedBox is usefull to define height
+                // SizedBox is usefull to define margin
                 SizedBox(
                   height: 20,
                 ),
