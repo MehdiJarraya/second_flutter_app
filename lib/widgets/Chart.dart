@@ -16,7 +16,7 @@ class Chart extends StatelessWidget {
         Duration(days: index),
       );
       var totalSum = 0.0;
-
+      print("aaaaaaaaa");
       for (var i = 0; i < recentTransactions.length; i++) {
         if (recentTransactions[i].date.day == weekDay.day &&
             recentTransactions[i].date.month == weekDay.month &&

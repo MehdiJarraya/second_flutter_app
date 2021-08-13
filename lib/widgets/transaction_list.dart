@@ -45,6 +45,7 @@ class TransactionList extends StatelessWidget {
                   ),
                   elevation: 5,
                   child: ListTile(
+                    // CircleAvatar unstead of using container with shape: BoxShape.circle
                     leading: CircleAvatar(
                       radius: 30,
                       child: Padding(

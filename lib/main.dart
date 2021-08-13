@@ -29,12 +29,16 @@ class MyApp extends StatelessWidget {
         // overrride all appBar  title with those style bellow
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
-                title: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+              // define global variable theme style
+              title: TextStyle(
+                fontFamily: 'OpenSans',
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
+              // define global variable theme style
+              button: TextStyle(
+                color: Colors.white,
+              )),
         ),
       ),
       home: MyHomePage(),
