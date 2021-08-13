@@ -16,25 +16,27 @@ class TransactionList extends StatelessWidget {
         // BUT we have to define height because default ListView is infinite an this will provide an error
         // column height is the full remaining space
         transactions.isEmpty
-            ? Column(
-                children: <Widget>[
-                  Text("No transaction added Yet!"),
-                  // SizedBox is usefull to define margin
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 200,
-                    //  we have to define also image in pubspce.yml
-                    child: Image.asset(
-                      "assets/image/waiting.png",
-                      // will not work because if direct parent is column because column has infinti height
-                      // we have to wrap it with container
-                      fit: BoxFit.cover,
+            ? LayoutBuilder(builder: (ctx, constraints) {
+                return Column(
+                  children: <Widget>[
+                    Text("No transaction added Yet!"),
+                    // SizedBox is usefull to define margin
+                    SizedBox(
+                      height: 20,
                     ),
-                  ),
-                ],
-              )
+                    Container(
+                      height: constraints.maxHeight * 0.6,
+                      //  we have to define also image in pubspce.yml
+                      child: Image.asset(
+                        "assets/image/waiting.png",
+                        // will not work because if direct parent is column because column has infinti height
+                        // we have to wrap it with container
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
+                );
+              })
             : ListView.builder(
                 itemBuilder: (context, index) {
                   return Card(
