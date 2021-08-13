@@ -56,67 +56,75 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Title',
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 10,
+            right: 10,
+            left: 10,
+            // MediaQuery.of(context).viewInsets.bottom is the keyboard height ;)
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Title',
+                ),
+                controller: _titleController,
+                onSubmitted: (_) => _submitData(),
+                // onChanged: (value) {
+                //   titleInput = value;
+                // },
               ),
-              controller: _titleController,
-              onSubmitted: (_) => _submitData(),
-              // onChanged: (value) {
-              //   titleInput = value;
-              // },
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Amount',
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Amount',
+                ),
+                controller: _amountController,
+                keyboardType: TextInputType.number,
+                // (_) to indicute that we will not use the argument otherwise we have to define _submitData with a string argument
+                onSubmitted: (_) => _submitData(),
+                // onChanged: (value) => amountInput = value,
               ),
-              controller: _amountController,
-              keyboardType: TextInputType.number,
-              // (_) to indicute that we will not use the argument otherwise we have to define _submitData with a string argument
-              onSubmitted: (_) => _submitData(),
-              // onChanged: (value) => amountInput = value,
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      _selectedDate == null
-                          ? 'No date chosen'
-                          : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
-                    ),
-                  ),
-                  RaisedButton(
-                    color: Theme.of(context).primaryColor,
-                    onPressed: _presentDatePicker,
-                    child: Text(
-                      'Choose Date',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+              Container(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        _selectedDate == null
+                            ? 'No date chosen'
+                            : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
                       ),
                     ),
-                    textColor: Theme.of(context).textTheme.button.color,
-                  )
-                ],
+                    RaisedButton(
+                      color: Theme.of(context).primaryColor,
+                      onPressed: _presentDatePicker,
+                      child: Text(
+                        'Choose Date',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      textColor: Theme.of(context).textTheme.button.color,
+                    )
+                  ],
+                ),
               ),
-            ),
-            FlatButton(
-              onPressed: () {
-                print(_titleController.text);
-                _submitData();
-              },
-              child: Text('Add transaction'),
-              textColor: Colors.purple,
-            ),
-          ],
+              FlatButton(
+                onPressed: () {
+                  print(_titleController.text);
+                  _submitData();
+                },
+                child: Text('Add transaction'),
+                textColor: Colors.purple,
+              ),
+            ],
+          ),
         ),
       ),
     );

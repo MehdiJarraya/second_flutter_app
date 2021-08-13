@@ -117,6 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final appBar = AppBar(
       title: Text(
         'Personal Expences',
@@ -151,18 +153,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             _showChart
                 ? Container(
-                    height: (MediaQuery.of(context).size.height -
+                    height: (mediaQuery.size.height -
                             // define app bar as a variable  => appBar.preferredSize.height varibleName.preferredSize.height
-                            // MediaQuery.of(context).padding.top =>status bar height
+                            // mediaQuery.padding.top =>status bar height
                             appBar.preferredSize.height -
-                            MediaQuery.of(context).padding.top) *
+                            mediaQuery.padding.top) *
                         0.7,
                     child: Chart(_recentTransctions),
                   )
                 : Container(
-                    height: (MediaQuery.of(context).size.height -
+                    height: (mediaQuery.size.height -
                             appBar.preferredSize.height -
-                            MediaQuery.of(context).padding.top) *
+                            mediaQuery.padding.top) *
                         0.7,
                     child:
                         TransactionList(_userTransactions, _deleteTransaction),
